@@ -14,8 +14,6 @@ class GenerateCardNameController extends Controller
             'img'=>'required|string|starts_with:assets/images/cards/',
         ]);
 
-        sleep(1);
-
         $img = Image::make(public_path($request->img));  
 
          $img->text($request->name, ($img->width() / 2), $img->height() - 40, function($font) use($img){  
