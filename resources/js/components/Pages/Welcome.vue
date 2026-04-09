@@ -91,8 +91,14 @@ export default {
 
       const showDialog = ref(false);
       const isPending = ref(false);
+        const form  = reactive({
+            id:0,
+            img:'',
+            name:'',
+        });
 
       const openModal = (card)=> {
+        form.id = card.id;
         form.img = card.img;
         showDialog.value = true;
       }
@@ -100,10 +106,7 @@ export default {
         showDialog.value = false;
       }
 
-       const form  = reactive({
-            img:'',
-            name:'',
-        });
+     
      
       const generateCardName = async() => {
           if (isPending.value) return;
