@@ -11,12 +11,13 @@ class GenerateCardNameController extends Controller
     public function generate(Request $request){
         $request->validate([
             'name'=>'required|string|min:2|max:20',
-            'img'=>'required|string|starts_with:assets/images/cards/',
+            'id'=>'required|integer|min:1|max:12',
         ]);
 
-        $img = Image::make(public_path($request->img));  
+        $src = "assets/images/cards/card".$request->id.".jpg";
+        $img = Image::make(public_path($src));  
 
-         $img->text($request->name, ($img->width() / 2), $img->height() - 40, function($font) use($img){  
+        $img->text($request->name, ($img->width() / 2), $img->height() - 40, function($font) use($img){  
             $font->file(public_path('assets/fonts/Roboto-Bold.ttf'));  
             $font->size($img->height() * 5 / 100);  
             $font->color('#000000');  
@@ -28,7 +29,7 @@ class GenerateCardNameController extends Controller
         $imagename = time().rand().'.jpg';
         $img->save(public_path('storage/FeastCard/'.$imagename));  
 
-          //  generate model url for it $imagename!
+        //generate model url for it $imagename!
         return response(['status'=>true,'message'=>__("Successfully generated!"),'imagesrc'=>asset('storage/FeastCard/'.$imagename),'imagename'=>$imagename]);
     }
 }

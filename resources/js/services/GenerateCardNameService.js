@@ -9,6 +9,7 @@ export async function generateCardNameService(form, isPending, root){
     try {
         const response = await axios.post('/api/generateCardNameService',{
             'name':form.name,
+            'id':form.id,
             'img':form.img
         });
     
