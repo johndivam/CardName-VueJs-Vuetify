@@ -14,7 +14,7 @@ class GenerateCardNameController extends Controller
             'id'=>'required|integer|min:1|max:12',
         ]);
 
-        #Image::make
+        #image make
         $img = Image::make(public_path("assets/images/cards/card".$request->id.".jpg"));  
 
         #text
